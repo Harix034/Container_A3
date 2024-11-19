@@ -1,0 +1,15 @@
+services:
+  web_service:
+    build: ./Web_service
+    ports:
+      - "5000:5000"
+    environment:
+      - MESSAGE=${MESSAGE}
+    command: sh -c "echo ${MESSAGE} && python app.py"
+
+  load_balancer:
+    build: ./Load_balancer
+    ports:
+      - "80:80"
+    environment:
+      - MESSAGE=${MESSAGE}
